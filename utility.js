@@ -80,11 +80,11 @@ function retrieve (code, province, directory) {
 
             alerts.datetime = data.dateTime[0].textSummary;
             alerts.timestamp = data.dateTime[0].timeStamp;
-            alerts.data = data.warnings || null;
+            alerts.warnings = data.warnings || null;
 
-            weather.datetime = data.dateTime[0].textSummary;
-            weather.timestamp = data.dateTime[0].timeStamp;
-            weather.data = {
+            weather = {
+                datetime: data.dateTime[0].textSummary,
+                timestamp: data.dateTime[0].timeStamp,
                 location: {
                     continent: data.location.continent,
                     country: data.location.country['@text'],
@@ -150,6 +150,7 @@ function retrieve (code, province, directory) {
                         }
                     }
                 },
+                forecast: [],
                 forecastGroup: {
                     datetime: data.forecastGroup.dateTime[0].textSummary,
                     timestamp: data.forecastGroup.dateTime[0].timeStamp,
@@ -161,13 +162,19 @@ function retrieve (code, province, directory) {
                 }
             };
 
-            data.forecastGroup.regionalNormals.temperature.forEach(i => {
-                weather.data.forecastGroup.regionalNormals.temperature.push({
+            weather.forecastGroup.forecast = data.forecastGroup.forecast.map(i => {
+                return {
+
+                };
+            });
+
+            weather.forecastGroup.regionalNormals.temperature = data.forecastGroup.regionalNormals.temperature.map(i => {
+                return {
                     value: i['@text'],
                     'class': i['class'],
                     unitType: i.unitType,
                     units: i.units
-                });
+                };
             });
 
             deferreds.push(write(path.join(directory, 'alerts.json'), alerts));
