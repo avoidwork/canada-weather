@@ -1,6 +1,6 @@
 {
   "name": "canada-weather",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Environment Canada Alert & Weather Scraper",
   "main": "index.js",
   "scripts": {
@@ -8,20 +8,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com:OttawaSki/canada-weather.git"
+    "url": "git://github.com/OttawaSki/canada-weather.git"
   },
   "keywords": [
     "weather",
     "alerts",
     "offline",
-    "processing"
+    "processing",
+    "scraper",
+    "scrape"
   ],
   "author": "Jason Mulligan <jason@ottawa.ski>",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com:OttawaSki/canada-weather/issues"
+    "url": "https://github.com/OttawaSki/canada-weather/issues"
   },
-  "homepage": "https://github.com:OttawaSki/canada-weather#readme",
+  "homepage": "https://github.com/OttawaSki/canada-weather#readme",
   "dependencies": {
     "command-line-args": "^2.1.6",
     "mkdirp": "^0.5.1",
