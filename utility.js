@@ -150,8 +150,25 @@ function retrieve (code, province, directory) {
                         }
                     }
                 },
-                forecastGroup: []
+                forecastGroup: {
+                    datetime: data.forecastGroup.dateTime[0].textSummary,
+                    timestamp: data.forecastGroup.dateTime[0].timeStamp,
+                    forecast: [],
+                    regionalNormals: {
+                        temperature: [],
+                        textSummary: data.forecastGroup.regionalNormals.textSummary
+                    }
+                }
             };
+
+            data.forecastGroup.regionalNormals.temperature.forEach(i => {
+                weather.data.forecastGroup.regionalNormals.temperature.push({
+                    value: i['@text'],
+                    'class': i['class'],
+                    unitType: i.unitType,
+                    units: i.units
+                });
+            });
 
             deferreds.push(write(path.join(directory, 'alerts.json'), alerts));
             deferreds.push(write(path.join(directory, 'weather.json'), weather));
