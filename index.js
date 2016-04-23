@@ -19,9 +19,19 @@ let cli = commandLineArgs([{
         alias: 'd',
         type: String,
         defaultValue: path.join(__dirname, 'data')
+    },
+    {
+        name: 'uid',
+        alias: 'u',
+        type: Number
     }]),
     options = cli.parse(),
     sites = haro(null, {id: 'sites', key: 'code', index:['nameEn'], versioning: false});
+
+// Dropping process if a uid is specified
+if (options.uid) {
+    process.setuid(options.uid);
+}
 
 // Handling relative paths
 options.directory = path.resolve(options.directory);
