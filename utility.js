@@ -8,7 +8,17 @@ const fs = require('fs'),
     urls = {
         sites: 'http://dd.weather.gc.ca/citypage_weather/xml/siteList.xml',
         weather: 'http://dd.weather.gc.ca/citypage_weather/xml/{{province}}/{{code}}_e.xml'
-    };
+    },
+    parseDate = /(\d{4,4})(\d{2,2})(\d{2,2})(\d{2,2})(\d{2,2})(\d{2,2})/;
+
+function fixDate (arg) {
+    let date = arg.match(parseDate);
+
+    date.shift();
+    --date[1]; // Fixing month
+
+    return Date.UTC(...date);
+}
 
 function write (file, data) {
     let deferred = defer();
@@ -78,13 +88,11 @@ function retrieve (code, province, directory) {
             deferreds = [];
             data = xml.xml2obj(body).siteData;
 
-            alerts.datetime = data.dateTime[0].textSummary;
-            alerts.timestamp = data.dateTime[0].timeStamp;
+            alerts.timestamp = fixDate(data.dateTime[0].timeStamp);
             alerts.warnings = data.warnings || null;
 
             weather = {
-                datetime: data.dateTime[0].textSummary,
-                timestamp: data.dateTime[0].timeStamp,
+                timestamp: fixDate(data.dateTime[0].timeStamp),
                 location: {
                     continent: data.location.continent,
                     country: data.location.country['@text'],
@@ -98,8 +106,7 @@ function retrieve (code, province, directory) {
                 },
                 currentConditions: {
                     condition: data.currentConditions.condition,
-                    datetime: data.currentConditions.dateTime[0].textSummary,
-                    timestamp: data.currentConditions.dateTime[0].timeStamp,
+                    timestamp: fixDate(data.currentConditions.dateTime[0].timeStamp),
                     dewpoint: {
                         value: data.currentConditions.dewpoint['@text'],
                         unitType: data.currentConditions.dewpoint.unitType,
@@ -151,8 +158,7 @@ function retrieve (code, province, directory) {
                     }
                 },
                 forecastGroup: {
-                    datetime: data.forecastGroup.dateTime[0].textSummary,
-                    timestamp: data.forecastGroup.dateTime[0].timeStamp,
+                    timestamp: fixDate(data.forecastGroup.dateTime[0].timeStamp),
                     forecast: [],
                     regionalNormals: {
                         temperature: [],
