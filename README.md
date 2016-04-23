@@ -1,7 +1,7 @@
 # Canada Weather Scraper
 Retrieves data from the Government of Canada Open Data Weather API & writes JSON data to disk, allowing for file watchers to pick up the data.
 
-This scraper will create `alerts.json` & `weather.json` in a target directory asynchronously.
+This scraper will create `warnings.json` & `weather.json` in a target directory asynchronously.
 
 ## Arguments
 #### city / c (`Ottawa`)

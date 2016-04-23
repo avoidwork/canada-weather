@@ -78,7 +78,7 @@ function retrieve (code, province, directory) {
         url = urls.weather.replace("{{code}}", code).replace("{{province}}", province);
 
     request(url, (err, res, body) => {
-        let alerts = {},
+        let warnings = {},
             weather = {},
             data, deferreds;
 
@@ -88,8 +88,8 @@ function retrieve (code, province, directory) {
             deferreds = [];
             data = xml.xml2obj(body).siteData;
 
-            alerts.timestamp = fixDate(data.dateTime[0].timeStamp);
-            alerts.warnings = data.warnings || null;
+            warnings.timestamp = fixDate(data.dateTime[0].timeStamp);
+            warnings.warnings = data.warnings || null;
 
             weather = {
                 timestamp: fixDate(data.dateTime[0].timeStamp),
@@ -205,7 +205,7 @@ function retrieve (code, province, directory) {
                 };
             });
 
-            deferreds.push(write(path.join(directory, 'alerts.json'), alerts));
+            deferreds.push(write(path.join(directory, 'warnings.json'), warnings));
             deferreds.push(write(path.join(directory, 'weather.json'), weather));
 
             Promise.all(deferreds).then(deferred.resolve).catch(deferred.reject);
