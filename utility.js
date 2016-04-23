@@ -150,7 +150,6 @@ function retrieve (code, province, directory) {
                         }
                     }
                 },
-                forecast: [],
                 forecastGroup: {
                     datetime: data.forecastGroup.dateTime[0].textSummary,
                     timestamp: data.forecastGroup.dateTime[0].timeStamp,
@@ -164,7 +163,30 @@ function retrieve (code, province, directory) {
 
             weather.forecastGroup.forecast = data.forecastGroup.forecast.map(i => {
                 return {
-
+                    abbreviatedForecast: i.abbreviatedForecast.textSummary,
+                    cloudPrecip: i.cloudPrecip.textSummary,
+                    period: {
+                        value: i.period['@text'],
+                        textForecastName: i.period.textForecastName
+                    },
+                    precipitation: {
+                        textSummary: i.precipitation.textSummary,
+                        precipType: {
+                            start: i.precipitation.precipType.start,
+                            end: i.precipitation.precipType.end
+                        }
+                    },
+                    relativeHumidity: {
+                        value: i.relativeHumidity['@text'],
+                        units: i.relativeHumidity.units
+                    },
+                    temperature: {
+                        value: i.temperatures.temperature['@text'],
+                        'class': i.temperatures.temperature['class'],
+                        unitType: i.temperatures.temperature.unitType,
+                        units: i.temperatures.temperature.units,
+                        textSummary: i.temperatures.textSummary
+                    }
                 };
             });
 
