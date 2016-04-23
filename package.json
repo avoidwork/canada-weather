@@ -1,6 +1,6 @@
 {
   "name": "canada-weather",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Canada Weather Scraper",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,9 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/OttawaSki/canada-weather.git"
+  },
+  "engines": {
+    "node": ">=5.5.0"
   },
   "keywords": [
     "weather",
