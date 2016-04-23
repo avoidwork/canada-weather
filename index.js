@@ -4,6 +4,7 @@ const fs = require('fs'),
     mkdirp = require('mkdirp'),
     path = require('path'),
     haro = require('haro'),
+    defer = require('tiny-defer'),
     utility = require(path.join(__dirname, 'utility.js')),
     commandLineArgs = require('command-line-args');
 
@@ -11,7 +12,7 @@ let cli = commandLineArgs([{
         name: 'city',
         alias: 'c',
         type: String,
-        defaultValue: 'on-118_e'
+        defaultValue: 'Ottawa'
     },
     {
         name: 'directory',
@@ -28,16 +29,28 @@ options.directory = path.resolve(options.directory);
 // Ensuring target directory exists
 mkdirp.sync(options.directory);
 
-// Loading sites, finding code & retrieving data
+// Loading sites, finding site & retrieving data
 utility.sites().then(data => {
     return sites.batch(data, 'set');
 }).then(() => {
     let regex = new RegExp('^' + options.city, 'i'),
-        site = sites.search(regex)[0][1];
+        results = sites.search(regex),
+        deferred, site, output;
 
-    return utility.retrieve(site.code, site.provinceCode, options.directory);
+    if (results.length > 0) {
+        site = results[0][1];
+        output = utility.retrieve(site.code, site.provinceCode, options.directory);
+    } else {
+        deferred = defer();
+        output = deferred.promise;
+        deferred.reject(new Error('City not found'));
+    }
+
+    return output;
 }).then(() => {
+    console.log('Saved weather data to ' + options.directory);
     process.exit(0);
-}).catch(() => {
+}).catch(err => {
+    console.error('Failed to retrieve weather data:\n' + err.stack);
     process.exit(1);
 });

@@ -1,10 +1,10 @@
-# Environment Canada Alert & Weather Scraper
-Retrieves data from Environment Canada & writes JSON data to disk, allowing for file watchers to pick up the data.
+# Canada Weather Scraper
+Retrieves data from the Government of Canada Open Data Weather API & writes JSON data to disk, allowing for file watchers to pick up the data.
 
 This scraper will create `alerts.json` & `weather.json` in a target directory asynchronously.
 
 ## Arguments
-#### city / c (`on-118_e`)
+#### city / c (`Ottawa`)
 Environment Canada city ID, defaults to `Ottawa`.
 
 #### directory / d (`./data`)
