@@ -58,7 +58,7 @@ utility.sites().then(data => {
 
     return output;
 }).then(() => {
-    console.log('Saved weather data to ' + options.directory);
+    console.log('Saved weather data \'' + options.directory + '\'');
     process.exit(0);
 }).catch(err => {
     console.error('Failed to retrieve weather data:\n' + err.stack);
