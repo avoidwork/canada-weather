@@ -1,6 +1,6 @@
 {
   "name": "canada-weather",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Environment Canada Alert & Weather Scraper",
   "main": "index.js",
   "scripts": {
@@ -11,8 +11,8 @@
     "url": "git+https://github.com:OttawaSki/canada-weather.git"
   },
   "keywords": [
-    "ottawa",
-    "ski",
+    "weather",
+    "alerts",
     "offline",
     "processing"
   ],
