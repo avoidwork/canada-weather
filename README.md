@@ -5,7 +5,7 @@ This scraper will create `alerts.json` & `weather.json` in a target directory as
 
 ## Arguments
 #### city / c (`Ottawa`)
-Environment Canada city ID, defaults to `Ottawa`.
+Name of a Canadian city, defaults to `Ottawa`.
 
 #### directory / d (`./data`)
 Directory to write data to.
