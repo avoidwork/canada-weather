@@ -19,4 +19,4 @@ $ node index.js -d ~/Desktop
 ```
 
 ## Requirements
-Requires node.js with ES6 syntax support (^4.x.x).
+Requires node.js with ES6 syntax support (^5.5.x).
