@@ -35,5 +35,6 @@ node_modules
 # IDE
 .idea
 
-# Default data directory
+# Application data
 data
+sites.json
