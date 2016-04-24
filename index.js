@@ -44,11 +44,21 @@ utility.sites().then(data => {
     return sites.batch(data, 'set');
 }).then(() => {
     let regex = new RegExp('^' + options.city, 'i'),
-        results = sites.search(regex),
+        results = sites.toArray(sites.search(regex), false),
         deferred, site, output;
 
     if (results.length > 0) {
-        site = results[0][1];
+        site = results.shift();
+
+        if (results.length > 0) {
+            console.log('Multiple sites found, using: ' + site.nameEn);
+            console.log('Other potential sites:');
+
+            results.forEach(s => {
+                console.log('- ' + s.nameEn);
+            });
+        }
+
         output = utility.retrieve(site.code, site.provinceCode, options.directory);
     } else {
         deferred = defer();

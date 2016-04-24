@@ -15,7 +15,7 @@ UID to run process as.
 
 ## Example
 ```console
-$ node index.js -d ~/Desktop
+$ node index.js -d ~/Desktop -c toronto
 ```
 
 ## Requirements
