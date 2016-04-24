@@ -51,7 +51,7 @@ function sites () {
             if (err) {
                 deferred.reject(err);
             } else {
-                data = xml.xml2obj(body).siteList.site.filter(i => {
+                data = xml.xml2obj(body).siteList.site.map(i => {
                     let o = i;
 
                     delete o['@'];
