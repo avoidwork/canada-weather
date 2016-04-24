@@ -29,7 +29,7 @@
   "bugs": {
     "url": "https://github.com/OttawaSki/canada-weather/issues"
   },
-  "homepage": "https://github.com/OttawaSki/canada-weather#readme",
+  "homepage": "http://ottawaski.github.io/canada-weather",
   "dependencies": {
     "command-line-args": "^2.1.6",
     "haro": "^1.9.9",
