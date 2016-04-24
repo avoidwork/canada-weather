@@ -7,7 +7,7 @@ const fs = require('fs'),
     path = require('path'),
     haro = require('haro'),
     defer = require('tiny-defer'),
-    utility = require(path.resolve(__dirname, '/utility.js')),
+    utility = require(path.resolve(__dirname, 'utility.js')),
     commandLineArgs = require('command-line-args');
 
 let cli = commandLineArgs([{

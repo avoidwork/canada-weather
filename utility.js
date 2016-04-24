@@ -35,7 +35,7 @@ function write (file, data) {
 }
 
 function sites () {
-    const fpPath = path.resolve(__dirname, '/sites.json');
+    const fpPath = path.resolve(__dirname, 'sites.json');
     let deferred = defer(),
         data;
 
