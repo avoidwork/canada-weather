@@ -7,8 +7,7 @@ const fs = require('fs'),
     path = require('path'),
     haro = require('haro'),
     defer = require('tiny-defer'),
-    dir = __dirname,
-    utility = require(path.join(dir, 'utility.js')),
+    utility = require(path.resolve('./utility.js')),
     commandLineArgs = require('command-line-args');
 
 let cli = commandLineArgs([{
@@ -21,7 +20,7 @@ let cli = commandLineArgs([{
         name: 'directory',
         alias: 'd',
         type: String,
-        defaultValue: path.join(process.cwd(), 'data')
+        defaultValue: process.cwd()
     },
     {
         name: 'uid',
@@ -44,7 +43,7 @@ options.directory = path.resolve(options.directory);
 mkdirp.sync(options.directory);
 
 // Loading sites, finding site & retrieving data
-utility.sites(dir).then(data => {
+utility.sites().then(data => {
     return sites.batch(data, 'set');
 }).then(() => {
     let regex = new RegExp('^' + options.city.replace(/[\-\[\]{}()*+?.,\\\/\^\$|#\s]/g, "\\$&"), 'i'),

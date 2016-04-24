@@ -36,5 +36,6 @@ node_modules
 .idea
 
 # Application data
-data
 sites.json
+warnings.json
+weather.json

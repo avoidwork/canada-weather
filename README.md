@@ -7,7 +7,7 @@ This scraper will create `warnings.json` & `weather.json` in a target directory 
 #### city / c (`Ottawa`)
 Name of a Canadian city.
 
-#### directory / d (`./data`)
+#### directory / d (`./`)
 Directory to write data to.
 
 #### uid / u
