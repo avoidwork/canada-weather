@@ -52,8 +52,8 @@ utility.sites().then(data => {
         site = results.shift();
 
         if (results.length > 0) {
-            console.log('Multiple sites found, using: ' + site.nameEn);
-            console.log('Other potential sites:');
+            console.log('Multiple cities found, using: ' + site.nameEn);
+            console.log('Other potential cities:');
 
             results.forEach(s => {
                 console.log('- ' + s.nameEn);
