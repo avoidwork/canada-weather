@@ -42,7 +42,6 @@ function sites () {
     try {
         data = require(fpPath);
         deferred.resolve(data);
-        console.log('Loaded site data \'' + fpPath + '\'');
     } catch (err) {
         console.warn(err.message);
         request(urls.sites, (err, res, body) => {
@@ -61,10 +60,8 @@ function sites () {
 
                 write(fpPath, data).then(() => {
                     deferred.resolve(data);
-                    console.log('Saved site data \'' + fpPath + '\'');
                 }).catch(err => {
                     deferred.reject(err);
-                    console.error('Failed to save site data:\n' + err.stack);
                 });
             }
         });
@@ -207,7 +204,6 @@ function retrieve (code, province, directory) {
 
             deferreds.push(write(path.join(directory, 'warnings.json'), warnings));
             deferreds.push(write(path.join(directory, 'weather.json'), weather));
-
             Promise.all(deferreds).then(deferred.resolve).catch(deferred.reject);
         }
     });
