@@ -7,7 +7,7 @@ const fs = require('fs'),
     path = require('path'),
     haro = require('haro'),
     defer = require('tiny-defer'),
-    dir = process.cwd(),
+    dir = __dirname,
     utility = require(path.join(dir, 'utility.js')),
     commandLineArgs = require('command-line-args');
 
@@ -21,7 +21,7 @@ let cli = commandLineArgs([{
         name: 'directory',
         alias: 'd',
         type: String,
-        defaultValue: path.join(dir, 'data')
+        defaultValue: path.join(process.cwd(), 'data')
     },
     {
         name: 'uid',
