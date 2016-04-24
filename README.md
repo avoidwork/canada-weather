@@ -13,14 +13,20 @@ Directory to write data to.
 #### uid / u
 UID to run process as.
 
-## Example
+## Examples
+#### npm global module
+```console
+$ canada-weather -d ~/Desktop -c toronto
+```
+
+#### Cloned
 ```console
 $ node index.js -d ~/Desktop -c toronto
 ```
 
-Refined search when multiple matches:
+#### Refined Search
 ```console
-$ node index.js -d ~/Desktop -c "ottawa (richmond"
+$ canada-weather -d ~/Desktop -c "ottawa (richmond"
 ```
 
 ## Requirements
