@@ -34,8 +34,8 @@ function write (file, data) {
     return deferred.promise;
 }
 
-function sites () {
-    const fpPath = path.join(__dirname, 'sites.json');
+function sites (directory) {
+    const fpPath = path.join(directory, 'sites.json');
     let deferred = defer(),
         data;
 
