@@ -2,8 +2,7 @@
 
 'use strict';
 
-const fs = require('fs'),
-    mkdirp = require('mkdirp'),
+const mkdirp = require('mkdirp'),
     path = require('path'),
     haro = require('haro'),
     defer = require('tiny-defer'),
@@ -14,7 +13,7 @@ let cli = commandLineArgs([{
         name: 'city',
         alias: 'c',
         type: String,
-        defaultValue: 'Ottawa'
+        defaultValue: 'Ottawa (Richmond - Metcalfe)'
     },
     {
         name: 'directory',
