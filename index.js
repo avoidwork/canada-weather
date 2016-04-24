@@ -26,7 +26,8 @@ let cli = commandLineArgs([{
         type: Number
     }]),
     options = cli.parse(),
-    sites = haro(null, {id: 'sites', key: 'code', index:['nameEn'], versioning: false});
+    sites = haro(null, {id: 'sites', key: 'code', index:['nameEn'], versioning: false}),
+    site;
 
 // Dropping process if a uid is specified
 if (options.uid) {
@@ -43,9 +44,9 @@ mkdirp.sync(options.directory);
 utility.sites().then(data => {
     return sites.batch(data, 'set');
 }).then(() => {
-    let regex = new RegExp('^' + options.city, 'i'),
+    let regex = new RegExp('^' + options.city.replace(/[\-\[\]{}()*+?.,\\\/\^\$|#\s]/g, "\\$&"), 'i'),
         results = sites.toArray(sites.search(regex), false),
-        deferred, site, output;
+        deferred, output;
 
     if (results.length > 0) {
         site = results.shift();
@@ -68,7 +69,7 @@ utility.sites().then(data => {
 
     return output;
 }).then(() => {
-    console.log('Saved weather data \'' + options.directory + '\'');
+    console.log('Saved weather data for ' + site.nameEn + ' \'' + options.directory + '\'');
     process.exit(0);
 }).catch(err => {
     console.error('Failed to retrieve weather data:\n' + err.stack);

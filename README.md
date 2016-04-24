@@ -18,5 +18,10 @@ UID to run process as.
 $ node index.js -d ~/Desktop -c toronto
 ```
 
+Refined search when multiple matches:
+```console
+$ node index.js -d ~/Desktop -c "ottawa (richmond"
+```
+
 ## Requirements
 Requires node.js with ES6 syntax support (^5.5.x).
