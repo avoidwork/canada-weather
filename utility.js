@@ -43,7 +43,6 @@ function sites () {
         data = require(fpPath);
         deferred.resolve(data);
     } catch (err) {
-        console.warn(err.message);
         request(urls.sites, (err, res, body) => {
             let data;
 
