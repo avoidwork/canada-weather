@@ -4,7 +4,7 @@ Retrieves data from the Government of Canada Open Data Weather API & writes JSON
 This scraper will create `warnings.json` & `weather.json` in a target directory asynchronously.
 
 ## Arguments
-#### city / c (`Ottawa (Richmond - Metcalfe)`)
+#### city / c (`Ottawa`)
 Name of a Canadian city.
 
 #### directory / d (`./`)

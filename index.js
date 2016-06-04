@@ -13,7 +13,7 @@ let cli = commandLineArgs([{
         name: 'city',
         alias: 'c',
         type: String,
-        defaultValue: 'Ottawa (Richmond - Metcalfe)'
+        defaultValue: 'Ottawa'
     },
     {
         name: 'directory',
