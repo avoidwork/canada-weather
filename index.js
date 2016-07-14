@@ -6,40 +6,13 @@ const mkdirp = require('mkdirp'),
     path = require('path'),
     haro = require('haro'),
     defer = require('tiny-defer'),
-    utility = require(path.resolve(__dirname, 'lib', 'utility.js')),
-    commandLineArgs = require('command-line-args');
+    utility = require(path.resolve(__dirname, 'lib', 'utility.js'));
 
-let cli = commandLineArgs([{
-        name: 'city',
-        alias: 'c',
-        type: String,
-        defaultValue: 'Ottawa'
-    },
-    {
-        name: 'directory',
-        alias: 'd',
-        type: String,
-        defaultValue: process.cwd()
-    },
-    {
-        name: 'uid',
-        alias: 'u',
-        type: Number
-    }]),
-    options = cli.parse(),
-    sites = haro(null, {id: 'sites', key: 'code', index:['nameEn'], versioning: false}),
+let sites = haro(null, {id: 'sites', key: 'code', index:['nameEn'], versioning: false}),
     site;
 
-// Dropping process if a uid is specified
-if (options.uid) {
-    process.setuid(options.uid);
-}
-
-// Handling relative paths
-options.directory = path.resolve(options.directory);
-
 // Ensuring target directory exists
-mkdirp.sync(options.directory);
+mkdirp.sync(path.join(__dirname, 'data'));
 
 // Loading sites, finding site & retrieving data
 utility.sites().then(data => {
