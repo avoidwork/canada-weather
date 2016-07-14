@@ -1,5 +1,3 @@
 .gitignore
 node_modules
-sites.json
-warnings.json
-weather.json
+data/*.json

@@ -6,7 +6,7 @@ const mkdirp = require('mkdirp'),
     path = require('path'),
     haro = require('haro'),
     defer = require('tiny-defer'),
-    utility = require(path.resolve(__dirname, 'lib', 'utility.js')),
+    utility = require(path.resolve(__dirname, 'utility.js')),
     commandLineArgs = require('command-line-args');
 
 let cli = commandLineArgs([{

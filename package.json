@@ -27,7 +27,7 @@
   "author": "Jason Mulligan <jason.mulligan@avoidwork.com>",
   "license": "BSD-3-Clause",
   "bin": {
-    "canada-weather": "./index.js"
+    "canada-weather": "./bin/index.js"
   },
   "bugs": {
     "url": "https://github.com/OttawaSki/canada-weather/issues"
